@@ -1,0 +1,7 @@
+{
+  "name": "wheaterApp",
+  "integrations": {
+    "cordova": {}
+  },
+  "type": "ionic-angular"
+}
