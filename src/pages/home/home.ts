@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
 import { WeatherProvider } from '../../providers/weather/weather';
 import { Geolocation } from '@ionic-native/geolocation';
+import { Storage } from '@ionic/storage';
 
 @Component({
   selector: 'page-home',
@@ -10,6 +11,7 @@ import { Geolocation } from '@ionic-native/geolocation';
 export class HomePage {
 
   data: any;
+  units: String;
 
   geolocationOptions = {
     maximumAge: 0,
@@ -19,7 +21,8 @@ export class HomePage {
 
   constructor(public navCtrl: NavController, 
               private geolocation: Geolocation,
-              private weatherProvider: WeatherProvider) {
+              private weatherProvider: WeatherProvider,
+              private storage: Storage) {
 
   }
 
@@ -28,12 +31,19 @@ export class HomePage {
       .then(resp => {
         let latitude = resp.coords.latitude.toFixed(0);
         let longitude = resp.coords.longitude.toFixed(0);
-        console.log(latitude+' '+longitude);
-        this.weatherProvider.getWheater(latitude, longitude)
-          .subscribe(resp => {
-            console.log(resp);
-            this.data = resp;
-          });
+        this.storage.get('units').then( resp => {
+          if(resp != null){
+            this.units = resp;
+          }
+          else{
+            this.units = "Metric";
+          }
+          this.units = this.units.toLocaleLowerCase();
+          this.weatherProvider.getWheater(latitude, longitude, this.units)
+            .subscribe(resp => {
+              this.data = resp;
+            });
+        });
       });
   }
 
