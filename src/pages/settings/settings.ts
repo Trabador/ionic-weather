@@ -36,7 +36,6 @@ export class SettingsPage {
   }
 
   saveUnits(){
-    console.log(this.unitsSelected);
     this.storage.set('units', this.unitsSelected);
   }
 

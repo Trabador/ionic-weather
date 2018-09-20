@@ -27,24 +27,25 @@ export class HomePage {
   }
 
   ionViewWillEnter(){
-    this.geolocation.getCurrentPosition()
+    this.geolocation.getCurrentPosition(this.geolocationOptions)
       .then(resp => {
         let latitude = resp.coords.latitude.toFixed(0);
         let longitude = resp.coords.longitude.toFixed(0);
-        this.storage.get('units').then( resp => {
-          if(resp != null){
-            this.units = resp;
-          }
-          else{
-            this.units = "Metric";
-          }
-          this.units = this.units.toLocaleLowerCase();
-          this.weatherProvider.getWheater(latitude, longitude, this.units)
-            .subscribe(resp => {
-              this.data = resp;
-            });
-        });
+        this.callForWeahtherData(latitude, longitude)
+          .then(resp => this.data = resp)
       });
   }
 
+  callForWeahtherData(latitude, longitude){
+    return this.storage.get('units').then(resp => {
+      if(resp != null){
+        this.units = resp;
+      }
+      else{
+        this.units = "Metric";
+      }
+      this.units = this.units.toLocaleLowerCase();
+      return this.weatherProvider.getWheater(latitude, longitude, this.units).toPromise()
+    });
+  }
 }
