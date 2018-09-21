@@ -1,3 +1,14 @@
 page-home {
+    
+    .primaryData{
+        background: color($colors, secondary);
+        border-radius: 15px;
+        padding-top: 15px;
+    }
 
+    .secondaryData {
+        background: color($colors, secondary);
+        border-radius: 15px;
+        padding: 5px;
+    }
 }

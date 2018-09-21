@@ -4,32 +4,39 @@
   </ion-navbar>
 </ion-header>
 
-<ion-content padding>
+<ion-content padding class="home">
   <ion-grid *ngIf="data; else nodata">
     <ion-row>
       <ion-col>
-        <h2>{{data.weather[0].main}}</h2>
-        <h3>{{data.weather[0].description}}</h3>
-        <img src="http://openweathermap.org/img/w/{{data.weather[0].icon}}.png"
-              width="100" height="100"/>
-        <h1>{{data.main.temp}}&deg;</h1>
+        <div class="primaryData">
+          <h2 class="weather">{{data.weather[0].main}}</h2>
+          <div class="iconW">
+            <img src="http://openweathermap.org/img/w/{{data.weather[0].icon}}.png"/>
+          </div>
+          <h3 class="desc">{{data.weather[0].description}}</h3>
+          <h1 class="temp">{{data.main.temp}}&deg;</h1>
+        </div>  
       </ion-col>
     </ion-row>
     <ion-row>
-      <ion-list>
-        <ion-item>
-          <strong>Temp: </strong> {{data.main.temp}}&deg;
-        </ion-item>
-        <ion-item>
-          <strong>Humidity: </strong> {{data.main.humidity}}%
-        </ion-item>
-        <ion-item>
-          <strong>Min Temp: </strong> {{data.main.temp_min}}&deg;
-        </ion-item>
-        <ion-item>
-          <strong>Max Temp: </strong> {{data.main.temp_max}}&deg;
-        </ion-item>
-      </ion-list>
+      <ion-col>
+        <div class="secondaryData">
+          <ion-list>
+            <ion-item>
+              <strong>Temp: </strong> {{data.main.temp}}&deg;
+            </ion-item>
+            <ion-item>
+              <strong>Humidity: </strong> {{data.main.humidity}}%
+            </ion-item>
+            <ion-item>
+              <strong>Min Temp: </strong> {{data.main.temp_min}}&deg;
+            </ion-item>
+            <ion-item>
+              <strong>Max Temp: </strong> {{data.main.temp_max}}&deg;
+            </ion-item>
+          </ion-list>
+        </div>
+      </ion-col>
     </ion-row>
   </ion-grid>
   <ng-template #nodata>

@@ -13,19 +13,21 @@
 </ion-header>
 
 
-<ion-content padding>
+<ion-content padding class="settings">
   <ion-grid>
     <ion-row>
       <ion-col>
-        <ion-list>
-          <ion-item>
-            <ion-label fixed>Units</ion-label>
-            <ion-select [(ngModel)]="unitsSelected" name="unitsSelected" (ionChange)="saveUnits()">
-              <ion-option>Metric</ion-option>
-              <ion-option>Imperial</ion-option>
-            </ion-select>
-          </ion-item>
-        </ion-list>
+        <div class="unitSelection">
+          <ion-list>
+            <ion-item>
+              <ion-label fixed>Units</ion-label>
+              <ion-select [(ngModel)]="unitsSelected" name="unitsSelected" (ionChange)="saveUnits()">
+                <ion-option>Metric</ion-option>
+                <ion-option>Imperial</ion-option>
+              </ion-select>
+            </ion-item>
+          </ion-list>
+        </div>
       </ion-col>
     </ion-row>
   </ion-grid>
