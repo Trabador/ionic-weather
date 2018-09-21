@@ -1,5 +1,5 @@
 .home, .settings, .about{
-    margin-top: 20px;
+    margin-top: 10px;
     background-color: white;
 }
 
@@ -11,32 +11,26 @@
 }
 
 .temp{
-    font-size: 50px;
+    font-size: 40px;
     text-align: center;
     font-weight: normal;
 }
 
 
 .weather{
-    font-size: 30px;
+    font-size: 23px;
 }
 
 .desc{
-    font-size: 20px;
+    font-size: 18px;
 }
 
 .iconW img{
     width: 60px;
+    height: 60px;
 }
 
 .weather, .iconW, .desc{
     text-align: center;
 }
 
-.data {
-    border-radius: 20px;
-    padding-left: 10px;
-    padding-right: 10px;
-    padding-bottom: 5px;
-    padding-top: 5px;
-}
